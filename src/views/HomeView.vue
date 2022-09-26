@@ -1,18 +1,34 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="home row">
+    <div class="col-2">
+      <Sildebar :carsData="mycars" />
+    </div>
+    <div class="col-10">
+      <Cars :carsData="mycars" />
+      {{ c() }}
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import Sildebar from "@/component/sidebar/Sildebar.vue";
+import Cars from "@/component/cars/Cars.vue";
+import getCarsJson from "@/json/cars.json";
 export default {
   name: "HomeView",
+  data() {
+    return {
+      mycars: getCarsJson,
+    };
+  },
   components: {
-    HelloWorld,
+    Sildebar,
+    Cars,
+  },
+  methods: {
+    c() {
+      console.log(this.mycars[0].year);
+    },
   },
 };
 </script>
